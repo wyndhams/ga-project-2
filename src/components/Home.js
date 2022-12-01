@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Home() {
-  return <div>vhjdfo</div>;
+  return <div className="container">vhjdfo</div>;
 }
 
 export default Home;
