@@ -7,7 +7,7 @@ function Navbar() {
       <div className="container">
         <div className="navbar-brand">
           <Link to="/" className="navbar-item">
-            Home
+            Homeez
           </Link>
           <>
             <Link to="/login" className="navbar-item">
