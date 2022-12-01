@@ -3,10 +3,12 @@ import Account from './components/auth/Account';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Home from './components/Home';
+import { getData } from './components/lib/api';
 import Navbar from './components/Navbar';
 import Song from './components/Song';
 
 const App = () => {
+  getData();
   return (
     <BrowserRouter>
       <Navbar />
