@@ -3,7 +3,13 @@ import { useEffect, useState } from 'react';
 
 const ALBUMS_URL = 'https://api.napster.com/v2.2/albums/top';
 const API_KEY = '?apikey=YTY2NzM4ODgtMTdhNi00MWQ5LTkyZDktMmZjODBkYzA4N2Qw';
-
+const API_LIMIT = '&limit=200';
+const params = {
+  params: {
+    limit: 200,
+    apikey: 'YTY2NzM4ODgtMTdhNi00MWQ5LTkyZDktMmZjODBkYzA4N2Qw'
+  }
+};
 // api for artists = 'https://api.napster.com/v2.2/artists/top'
 
 export const registerUser = (newUserData) =>
@@ -17,7 +23,14 @@ export const getData = () => {
 
   useEffect(() => {
     axios
-      .get(`${ALBUMS_URL + API_KEY}`)
+      // .get(`${ALBUMS_URL + API_KEY + API_LIMIT}`)
+      // .get(ALBUMS_URL, {
+      //   params: {
+      //     limit: 200,
+      //     apikey: 'YTY2NzM4ODgtMTdhNi00MWQ5LTkyZDktMmZjODBkYzA4N2Qw'
+      //   }
+      // })
+      .get(ALBUMS_URL, params)
       .then((res) => setAlbum(res.data))
       .catch((err) => console.log(err));
   }, []);
