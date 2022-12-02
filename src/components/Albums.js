@@ -1,44 +1,53 @@
 import { useState, useEffect } from 'react';
+import { getDefaultLocale } from 'react-datepicker';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAlbums, getAlbum, getTrack } from '../lib/api';
-import { Navigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Albums = () => {
   const { birthyear } = useParams();
-  const [album, setAlbum] = useState(null);
   const [track, setTrack] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   useEffect(() => {
-    getAlbums()
-      .then((res) => {
-        const albumsByYear = res.data.albums.filter(
-          (album) => album.originallyReleased.substring(0, 4) === birthyear
-        );
+    console.log('CALL USE EFFECT');
+    const startDataFetching = () => {
+      const offset = Math.floor(Math.random() * 800);
+      getAlbums(offset)
+        .then((res) => {
+          console.log('RES FROM ALBUMS ENDPOINT', res.data.albums);
+          const albumsByYear = res.data.albums.filter(
+            (album) => album.originallyReleased.substring(0, 4) === birthyear
+          );
 
-        console.log(albumsByYear);
+          console.log('FILTERED ALBUMS', albumsByYear.length);
+          if (albumsByYear.length) {
+            console.log(albumsByYear);
 
-        const randomAlbumId =
-          albumsByYear[Math.floor(Math.random() * albumsByYear.length)].id;
+            const randomAlbumId =
+              albumsByYear[Math.floor(Math.random() * albumsByYear.length)].id;
 
-        getAlbum(randomAlbumId)
-          .then((res) => {
-            setAlbum(res.data);
-            console.log(res.data);
-            const randomSongId =
-              res.data.tracks[
-                Math.floor(Math.random() * res.data.tracks.length)
-              ].id;
+            getAlbum(randomAlbumId)
+              .then((res) => {
+                const randomSongId =
+                  res.data.tracks[
+                    Math.floor(Math.random() * res.data.tracks.length)
+                  ].id;
 
-            console.log(randomSongId);
+                console.log(randomSongId);
 
-            getTrack(randomSongId)
-              .then((res) => setTrack(res.data))
+                getTrack(randomSongId)
+                  .then((res) => setTrack(res.data))
+                  .catch((err) => console.error(err));
+              })
               .catch((err) => console.error(err));
-          })
-          .catch((err) => console.error(err));
-      })
-      .catch((err) => console.error(err));
+          } else {
+            startDataFetching();
+          }
+        })
+        .catch((err) => console.error(err));
+    };
+    startDataFetching();
   }, []);
 
   // useEffect(() => {
@@ -51,7 +60,7 @@ const Albums = () => {
   //   console.log(trackObject);
   // }, []);
 
-  if (album === null) {
+  if (track === null) {
     return <p>Loading</p>;
   }
   console.log('ksdflwndklnklnlwk', track);
