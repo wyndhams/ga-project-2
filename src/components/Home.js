@@ -12,7 +12,8 @@ function Home() {
   };
 
   const handleSelect = () => {
-    navigate(`/song/${startDate.getFullYear()}`);
+    // navigate(`/song/${startDate.getFullYear()}`);
+    navigate(`/albums/${startDate.getFullYear()}`);
   };
 
   return (

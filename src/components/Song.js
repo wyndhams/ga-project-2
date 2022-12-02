@@ -1,62 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { getAlbums, getAlbum, getTrack } from '../lib/api';
+import { getTrack } from '../lib/api';
+import Albums from './Albums';
 
-function Song() {
-  const { birthyear } = useParams();
-
-  // useEffect(() => {
-  //   getAlbums()
-  //     .then((res) => {
-  //       console.log(res.data);
-  //       const albumsFromBirthYear = res.data.albums.filter(
-  //         (album) => album.originallyReleased.substring(0, 4) === birthyear
-  //       );
-  //       console.log(albumsFromBirthYear);
-  //     })
-  //     .catch((err) => console.error(err));
-  // });
-
+function Song({ album }) {
   // const [track, setTrack] = useState(null);
-
+  console.log(album);
   // useEffect(() => {
-  //   getAlbums()
-  //     .then((res) => {
-  //       const albumbsFromBirthYear = res.data.albums.filter(
-  //         (album) => album.originallyReleased.substring(0, 4) === birthyear
-  //       );
-
-  //       const randomAlbumId =
-  //         albumbsFromBirthYear[
-  //           Math.ceil(Math.random() * albumbsFromBirthYear.length)
-  //         ].id;
-
-  //       console.log(albumbsFromBirthYear);
-
-  //       getAlbum(randomAlbumId)
-  //         .then((res) => {
-  //           console.log(res.data);
-  //           console.log(
-  //             res.data.tracks[Math.ceil(Math.random() * res.data.tracks.length)]
-  //           );
-
-  //           const randomSongId =
-  //             res.data.tracks[Math.ceil(Math.random() * res.data.tracks.length)]
-  //               .id;
-
-  //           console.log(randomSongId);
-
-  //           getTrack(randomSongId)
-  //             .then((res) => {
-  //               setTrack(res.data);
-
-  //               console.log(res.data);
-  //             })
-  //             .catch((err) => console.error(err));
-  //         })
-  //         .catch((err) => console.error(err));
-  //     })
-  //     .catch((err) => console.error(err));
+  //   const randomSongId =
+  //     album.tracks[Math.floor(Math.random() * album.tracks.length)].id;
+  //   const trackObject = getTrack(randomSongId);
+  //   console.log(trackObject);
   // }, []);
 
   return (
