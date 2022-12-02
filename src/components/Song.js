@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getData } from '../lib/api';
+import { getAlbums } from '../lib/api';
 
 function Song() {
   const { birthyear } = useParams();
 
   useEffect(() => {
-    getData()
+    getAlbums()
       .then((res) => {
         console.log(res.data);
         const albumsFromBirthYear = res.data.albums.filter(
