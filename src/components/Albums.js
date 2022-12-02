@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { getAlbums, getAlbum, getTrack } from '../lib/api';
 
 const Albums = () => {
