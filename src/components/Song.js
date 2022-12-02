@@ -1,26 +1,68 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAlbums } from '../lib/api';
+import { getAlbums, getAlbum, getTrack } from '../lib/api';
 
 function Song() {
   const { birthyear } = useParams();
 
-  useEffect(() => {
-    getAlbums()
-      .then((res) => {
-        console.log(res.data);
-        const albumsFromBirthYear = res.data.albums.filter(
-          (album) => album.originallyReleased.substring(0, 4) === birthyear
-        );
-        console.log(albumsFromBirthYear);
-      })
-      .catch((err) => console.error(err));
-  });
+  // useEffect(() => {
+  //   getAlbums()
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       const albumsFromBirthYear = res.data.albums.filter(
+  //         (album) => album.originallyReleased.substring(0, 4) === birthyear
+  //       );
+  //       console.log(albumsFromBirthYear);
+  //     })
+  //     .catch((err) => console.error(err));
+  // });
+
+  // const [track, setTrack] = useState(null);
+
+  // useEffect(() => {
+  //   getAlbums()
+  //     .then((res) => {
+  //       const albumbsFromBirthYear = res.data.albums.filter(
+  //         (album) => album.originallyReleased.substring(0, 4) === birthyear
+  //       );
+
+  //       const randomAlbumId =
+  //         albumbsFromBirthYear[
+  //           Math.ceil(Math.random() * albumbsFromBirthYear.length)
+  //         ].id;
+
+  //       console.log(albumbsFromBirthYear);
+
+  //       getAlbum(randomAlbumId)
+  //         .then((res) => {
+  //           console.log(res.data);
+  //           console.log(
+  //             res.data.tracks[Math.ceil(Math.random() * res.data.tracks.length)]
+  //           );
+
+  //           const randomSongId =
+  //             res.data.tracks[Math.ceil(Math.random() * res.data.tracks.length)]
+  //               .id;
+
+  //           console.log(randomSongId);
+
+  //           getTrack(randomSongId)
+  //             .then((res) => {
+  //               setTrack(res.data);
+
+  //               console.log(res.data);
+  //             })
+  //             .catch((err) => console.error(err));
+  //         })
+  //         .catch((err) => console.error(err));
+  //     })
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   return (
     <section className="section">
       <div className="container">
-        <h2 className="title has-text-centered">Example song title</h2>
+        <h2 className="title has-text-centered">whatever</h2>
         <hr />
         <div className="columns">
           <div className="column is-half">
