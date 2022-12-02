@@ -1,24 +1,21 @@
-// import { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import { getSingleSong } from '../lib/api';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getData } from '../lib/api';
 
 function Song() {
-  // const { id } = useParams();
-  // const [song, setSong] = useState(null);
+  const { birthyear } = useParams();
 
-  // useEffect(() => {
-  //   getSingleSong(id)
-  //     .then((res) => setSong(res.data))
-  //     .catch((err) => console.error(err.response));
-  // }, [id]);
-
-  // if (song === null) {
-  //   return (
-  //     <p>
-  //       Loading ...
-  //     </p>
-  //   );
-  // }
+  useEffect(() => {
+    getData()
+      .then((res) => {
+        console.log(res.data);
+        const albumsFromBirthYear = res.data.albums.filter(
+          (album) => album.originallyReleased.substring(0, 4) === birthyear
+        );
+        console.log(albumsFromBirthYear);
+      })
+      .catch((err) => console.error(err));
+  });
 
   return (
     <section className="section">

@@ -3,21 +3,21 @@ import Account from './components/auth/Account';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Home from './components/Home';
-import { getData } from './components/lib/api';
 import Navbar from './components/Navbar';
 import Song from './components/Song';
+import Albums from './components/Albums';
 
 const App = () => {
-  getData();
   return (
     <BrowserRouter>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/song" element={<Song />} />
+        <Route path="/song/:birthyear" element={<Song />} />
         <Route path="/account" element={<Account />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/albums" element={<Albums />} />
         <Route path="*" element={<p>Oops, page not found</p>} />
       </Routes>
     </BrowserRouter>

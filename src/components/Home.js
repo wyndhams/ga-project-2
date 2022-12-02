@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-  const [startDate, setStartDate] = useState(new Date());
+  const date = new Date();
+  const [startDate, setStartDate] = useState(date);
+  const navigate = useNavigate();
+
+  const handleChange = (date) => {
+    setStartDate(date);
+  };
+
+  const handleSelect = () => {
+    navigate(`/song/${startDate.getFullYear()}`);
+  };
 
   return (
     <>
@@ -19,12 +30,12 @@ function Home() {
               <h1 className="title">Pick your birthyear</h1>
               <DatePicker
                 selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                // onSelect={handleSelect} > will fire API with selected year
+                onChange={handleChange}
                 showYearPicker
                 dateFormat="yyyy"
               />
             </div>
+            <button onClick={handleSelect}>Get My Random Song</button>
             <div className="column is-half">
               <div className="columns">
                 <div className="column">
