@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ALBUMS_URL = 'https://api.napster.com/v2.2/albums/top';
+const ALBUMS_URL = 'https://api.napster.com/v2.1/albums/top';
 const API_KEY = {
   params: { apikey: 'YTY2NzM4ODgtMTdhNi00MWQ5LTkyZDktMmZjODBkYzA4N2Qw' }
 };

@@ -1,21 +1,25 @@
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { getTrack } from '../lib/api';
-import Albums from './Albums';
 
-function Song({ album }) {
-  // const [track, setTrack] = useState(null);
-  console.log(album);
-  // useEffect(() => {
-  //   const randomSongId =
-  //     album.tracks[Math.floor(Math.random() * album.tracks.length)].id;
-  //   const trackObject = getTrack(randomSongId);
-  //   console.log(trackObject);
-  // }, []);
+function Song() {
+  const { songId } = useParams();
+  const [track, setTrack] = useState(null);
+
+  useEffect(() => {
+    getTrack(songId)
+      .then((res) => setTrack(res.data))
+      .catch((err) => console.error(err));
+  }, []);
+
+  if (track === null) {
+    return <p>Loading</p>;
+  }
 
   return (
     <section className="section">
       <div className="container">
-        <h2 className="title has-text-centered">whatever</h2>
+        <h2 className="title has-text-centered">{track.tracks[0].name}</h2>
         <hr />
         <div className="columns">
           <div className="column is-half">
@@ -33,7 +37,7 @@ function Song({ album }) {
               </span>
               Artist
             </h4>
-            <p>Example Artist name</p>
+            <p>{track.tracks[0].artistName}</p>
             <hr />
             <h4 className="title is-4">
               <span role="img" aria-label="cdwave">
@@ -41,7 +45,7 @@ function Song({ album }) {
               </span>
               Album/EP
             </h4>
-            <p>Example</p>
+            <p>{track.tracks[0].albumName}</p>
             <hr />
             <h4 className="title is-4">
               <span role="img" aria-label="globe">
@@ -55,8 +59,9 @@ function Song({ album }) {
             <hr />
             <audio
               controls
-              src="http://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg"
+              src="https://www.kozco.com/tech/piano2-CoolEdit.mp3"
             ></audio>
+            <audio controls src={track.tracks[0].previewURL}></audio>
           </div>
         </div>
       </div>

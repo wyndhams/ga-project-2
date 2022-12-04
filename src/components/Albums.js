@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
-import { getDefaultLocale } from 'react-datepicker';
+// import { getDefaultLocale } from 'react-datepicker';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getAlbums, getAlbum, getTrack } from '../lib/api';
 // import { useNavigate } from 'react-router-dom';
 
 const Albums = () => {
   const { birthyear } = useParams();
-  const [track, setTrack] = useState(null);
-  // const navigate = useNavigate();
+  // const [track, setTrack] = useState(null);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     console.log('CALL USE EFFECT');
-    const startDataFetching = () => {
-      const offset = Math.floor(Math.random() * 800);
+    const startDataFetching = (offset) => {
       getAlbums(offset)
         .then((res) => {
           console.log('RES FROM ALBUMS ENDPOINT', res.data.albums);
@@ -35,19 +35,19 @@ const Albums = () => {
                   ].id;
 
                 console.log(randomSongId);
-
-                getTrack(randomSongId)
-                  .then((res) => setTrack(res.data))
-                  .catch((err) => console.error(err));
+                navigate(`/song/${randomSongId}`);
+                // getTrack(randomSongId)
+                //   .then((res) => setTrack(res.data))
+                //   .catch((err) => console.error(err));
               })
               .catch((err) => console.error(err));
           } else {
-            startDataFetching();
+            startDataFetching((offset + 200) % 800);
           }
         })
         .catch((err) => console.error(err));
     };
-    startDataFetching();
+    startDataFetching(0);
   }, []);
 
   // useEffect(() => {
@@ -60,11 +60,12 @@ const Albums = () => {
   //   console.log(trackObject);
   // }, []);
 
-  if (track === null) {
-    return <p>Loading</p>;
-  }
-  console.log('ksdflwndklnklnlwk', track);
-  return <p>{track.tracks[0].artistName}</p>;
+  // if (track === null) {
+  //   return <p>Loading</p>;
+  // }
+  // console.log('ksdflwndklnklnlwk', track);
+  // return <p>{track.tracks[0].artistName}</p>;
+  // navigate(`/songs/${track.tracks[0].id}`);
 };
 
 export default Albums;
