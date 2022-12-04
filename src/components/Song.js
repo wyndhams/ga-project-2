@@ -17,55 +17,41 @@ function Song() {
   }
 
   return (
-    <section className="section">
+    <>
+      {/* Q? Not sure why below isn't centered on page, I thought className "container" makes it centered */}
       <div className="container">
-        <h2 className="title has-text-centered">{track.tracks[0].name}</h2>
-        <hr />
-        <div className="columns">
-          <div className="column is-half">
-            <figure className="image">
-              <img
-                src="https://m.media-amazon.com/images/I/61qGOWN5UeL._SY355_.jpg"
-                alt="example"
-              />
-            </figure>
-          </div>
-          <div className="column is-half">
-            <h4 className="title is-4">
-              <span role="img" aria-label="microphone">
-                🎤
-              </span>
-              Artist
-            </h4>
-            <p>{track.tracks[0].artistName}</p>
-            <hr />
-            <h4 className="title is-4">
-              <span role="img" aria-label="cdwave">
-                💿
-              </span>
-              Album/EP
-            </h4>
-            <p>{track.tracks[0].albumName}</p>
-            <hr />
-            <h4 className="title is-4">
-              <span role="img" aria-label="globe">
-                🗓
-              </span>
-              Year published
-            </h4>
-            <hr />
-            <p>Example year</p>
-            <hr />
-            <hr />
-            <audio
-              controls
-              src="https://www.kozco.com/tech/piano2-CoolEdit.mp3"
-            ></audio>
-            <audio controls src={track.tracks[0].previewURL}></audio>
+        <div className="column is-half-desktop is-one-half-tablet">
+          <div className="card">
+            <div className="card-header">
+              <h4 className="card-header-title">{track.tracks[0].name}</h4>
+            </div>
+            <div className="card-image">
+              <figure className="image image is-1by1">
+                <img
+                  src="https://m.media-amazon.com/images/I/61qGOWN5UeL._SY355_.jpg"
+                  alt="example"
+                  loading="lazy"
+                  width="255"
+                  height="255"
+                />
+              </figure>
+            </div>
+            <div className="card-content">
+              <h4 className="">
+                <strong>Artist:</strong> {track.tracks[0].artistName}
+              </h4>
+              <h4 className="">
+                <strong>Album/EP:</strong> {track.tracks[0].albumName}
+              </h4>
+              <h4 className="">
+                <strong>Released:</strong> {track.tracks[0].albumName}
+              </h4>
+              <audio controls src={track.tracks[0].previewURL}></audio>
+            </div>
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }
 

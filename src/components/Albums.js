@@ -9,7 +9,6 @@ const Albums = () => {
   // const [track, setTrack] = useState(null);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     console.log('CALL USE EFFECT');
     const startDataFetching = (offset) => {
@@ -34,7 +33,8 @@ const Albums = () => {
                     Math.floor(Math.random() * res.data.tracks.length)
                   ].id;
 
-                console.log(randomSongId);
+                console.log('FILTERED TRACK', randomSongId);
+
                 navigate(`/song/${randomSongId}`);
                 // getTrack(randomSongId)
                 //   .then((res) => setTrack(res.data))
