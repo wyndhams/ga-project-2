@@ -18,7 +18,7 @@ function Home() {
 
   return (
     <>
-      <section className="hero is-medium is-link">
+      <section className="hero is-small is-link">
         <div className="hero-body">
           <p className="title">Your birth year in songs</p>
           <p className="subtitle">Discover music from your year of birth</p>
@@ -29,14 +29,17 @@ function Home() {
           <div className="columns">
             <div className="column is-half">
               <h1 className="title">Pick your birthyear</h1>
-              <DatePicker
-                selected={startDate}
-                onChange={handleChange}
-                showYearPicker
-                dateFormat="yyyy"
-              />
+              <div className="is-inline-flex">
+                <DatePicker
+                  selected={startDate}
+                  onChange={handleChange}
+                  showYearPicker
+                  dateFormat="yyyy"
+                  maxDate={new Date()}
+                />
+                <button onClick={handleSelect}>Get My Random Song</button>
+              </div>
             </div>
-            <button onClick={handleSelect}>Get My Random Song</button>
             <div className="column is-half">
               <div className="columns">
                 <div className="column">
