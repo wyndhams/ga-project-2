@@ -46,7 +46,7 @@ function Home() {
                   maxDate={new Date()}
                 />
                 <button
-                  className="button is-fullwidth is-primary"
+                  className="button is-fullwidth is-link"
                   onClick={handleSelect}
                 >
                   Get My Random Song
