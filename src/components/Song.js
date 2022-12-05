@@ -69,7 +69,7 @@ function Song() {
     <>
       {/* Q? Not sure why below isn't centered on page, I thought className "container" makes it centered */}
       <div className="container">
-        <div className="container column is-half-desktop is-one-half-tablet">
+        <div className="column is-half-desktop is-one-half-tablet container">
           <div className="card">
             <div className="card-header">
               <h4 className="card-header-title">{track.tracks[0].name}</h4>
@@ -78,7 +78,7 @@ function Song() {
               <figure className="image image is-1by1">
                 <img
                   src={artwork}
-                  alt="example"
+                  alt="album artwork"
                   loading="lazy"
                   width="255"
                   height="255"
@@ -97,7 +97,7 @@ function Song() {
               </h4>
               <audio controls src={track.tracks[0].previewURL}></audio>
               <button
-                className="button is-fullwidth is-medium is-primary"
+                className="button is-fullwidth is-medium is-link"
                 onClick={reloadPage}
               >
                 Give me another one
