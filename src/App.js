@@ -5,7 +5,6 @@ import Register from './components/auth/Register';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Song from './components/Song';
-import Albums from './components/Albums';
 
 const App = () => {
   return (
@@ -13,12 +12,10 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/song/:songId" element={<Song />} />
-        <Route path="/albums/:birthyear" element={<Albums />} />
+        <Route path="/song/:birthyear" element={<Song />} />
         <Route path="/account" element={<Account />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/albums" element={<Albums />} />
         <Route path="*" element={<p>Oops, page not found</p>} />
       </Routes>
     </BrowserRouter>

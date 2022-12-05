@@ -1,27 +1,65 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { getTrack } from '../lib/api';
-import Home from './Home';
-// import Albums from './Albums';
+import { useParams } from 'react-router-dom';
+import { getAlbums, getAlbum, getTrack, getImages } from '../lib/api';
 
-function Song({ image }) {
-  const { songId } = useParams();
+function Song() {
+  const { birthyear } = useParams();
+  const [artwork, setArtwork] = useState('');
   const [track, setTrack] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    getTrack(songId)
-      .then((res) => setTrack(res.data))
-      .catch((err) => console.error(err));
+    console.log('CALL USE EFFECT');
+    const startDataFetching = (offset) => {
+      getAlbums(offset)
+        .then((res) => {
+          console.log('GOT', res.data.albums.length, 'Albums');
+
+          const albumsByYear = res.data.albums.filter(
+            (album) => album.originallyReleased.substring(0, 4) === birthyear
+          );
+
+          if (albumsByYear.length) {
+            const randomAlbum =
+              albumsByYear[Math.floor(Math.random() * albumsByYear.length)];
+            const randomAlbumId = randomAlbum.id;
+
+            const randomAlbumEP = randomAlbum.links.images.href;
+            // get images for album
+            getImages(randomAlbumEP).then((data) => {
+              const randomNumber = Math.floor(
+                Math.random() * data.data.images.length
+              );
+              setArtwork(data.data.images[randomNumber].href);
+            });
+
+            // get album data
+            getAlbum(randomAlbumId)
+              .then((res) => {
+                const randomSongId =
+                  res.data.tracks[
+                    Math.floor(Math.random() * res.data.tracks.length)
+                  ].id;
+
+                console.log('FILTERED TRACK', randomSongId);
+
+                getTrack(randomSongId)
+                  .then((res) => setTrack(res.data))
+                  .catch((err) => console.error(err));
+              })
+              .catch((err) => console.error(err));
+          } else {
+            console.log('NO FILTERED ALBUMS');
+            startDataFetching(offset + 200);
+          }
+        })
+        .catch((err) => console.error(err));
+    };
+    startDataFetching(0);
   }, []);
 
   if (track === null) {
     return <p>Loading</p>;
   }
-
-  const rerender = () => {
-    navigate(`/albums/${startDate.getFullYear()}`);
-  };
 
   return (
     <>
@@ -34,9 +72,8 @@ function Song({ image }) {
             </div>
             <div className="card-image">
               <figure className="image image is-1by1">
-                {/* <Albums /> */}
                 <img
-                  src={image}
+                  src={artwork}
                   alt="example"
                   loading="lazy"
                   width="255"
@@ -55,9 +92,6 @@ function Song({ image }) {
                 <strong>Released:</strong> {track.tracks[0].albumName}
               </h4>
               <audio controls src={track.tracks[0].previewURL}></audio>
-              <button onClick={rerender} className="render">
-                New Track
-              </button>
             </div>
           </div>
         </div>

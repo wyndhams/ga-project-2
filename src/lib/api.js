@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const ALBUMS_URL = 'https://api.napster.com/v2.1/albums/top';
+const ALBUMS_URL = 'https://api.napster.com/v2.0/albums/top';
 const API_KEY = {
   params: { apikey: 'YTY2NzM4ODgtMTdhNi00MWQ5LTkyZDktMmZjODBkYzA4N2Qw' }
 };
@@ -19,18 +19,15 @@ export const getAlbums = (offset) => {
 
 export const getAlbum = (albumId) => {
   return axios.get(
-    `https://api.napster.com/v2.1/albums/${albumId}/tracks`,
-    API_KEY
-  );
-};
-
-export const getAlbumImage = (albumId) => {
-  return axios.get(
-    `https://api.napster.com/v2.1/albums/${albumId}/images`,
+    `https://api.napster.com/v2.2/albums/${albumId}/tracks`,
     API_KEY
   );
 };
 
 export const getTrack = (trackId) => {
-  return axios.get(`https://api.napster.com/v2.1/tracks/${trackId}`, API_KEY);
+  return axios.get(`https://api.napster.com/v2.2/tracks/${trackId}`, API_KEY);
+};
+
+export const getImages = (albumImagesEndpoint) => {
+  return axios.get(albumImagesEndpoint, API_KEY);
 };

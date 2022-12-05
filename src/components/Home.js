@@ -18,8 +18,8 @@ function Home() {
   };
 
   const handleSelect = () => {
-    // navigate(`/song/${startDate.getFullYear()}`);
-    navigate(`/albums/${startDate.getFullYear()}`);
+    navigate(`/song/${startDate.getFullYear()}`);
+    // navigate(`/albums/${startDate.getFullYear()}`);
     console.log(`START DATE: ${startDate}`);
   };
 
@@ -42,7 +42,7 @@ function Home() {
                   onChange={handleChange}
                   showYearPicker
                   dateFormat="yyyy"
-                  minDate={subtractYears(date, 22)}
+                  minDate={subtractYears(date, 12)}
                   maxDate={new Date()}
                 />
                 <button onClick={handleSelect}>Get My Random Song</button>
