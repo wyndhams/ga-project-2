@@ -20,6 +20,7 @@ function Home() {
   const handleSelect = () => {
     // navigate(`/song/${startDate.getFullYear()}`);
     navigate(`/albums/${startDate.getFullYear()}`);
+    console.log(`START DATE: ${startDate}`);
   };
 
   return (

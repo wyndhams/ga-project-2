@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getTrack } from '../lib/api';
+import Home from './Home';
+// import Albums from './Albums';
 
-function Song() {
+function Song({ image }) {
   const { songId } = useParams();
   const [track, setTrack] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTrack(songId)
@@ -15,6 +18,10 @@ function Song() {
   if (track === null) {
     return <p>Loading</p>;
   }
+
+  const rerender = () => {
+    navigate(`/albums/${startDate.getFullYear()}`);
+  };
 
   return (
     <>
@@ -27,8 +34,9 @@ function Song() {
             </div>
             <div className="card-image">
               <figure className="image image is-1by1">
+                {/* <Albums /> */}
                 <img
-                  src="https://m.media-amazon.com/images/I/61qGOWN5UeL._SY355_.jpg"
+                  src={image}
                   alt="example"
                   loading="lazy"
                   width="255"
@@ -47,6 +55,9 @@ function Song() {
                 <strong>Released:</strong> {track.tracks[0].albumName}
               </h4>
               <audio controls src={track.tracks[0].previewURL}></audio>
+              <button onClick={rerender} className="render">
+                New Track
+              </button>
             </div>
           </div>
         </div>

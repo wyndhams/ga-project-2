@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 // import { getDefaultLocale } from 'react-datepicker';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getAlbums, getAlbum, getTrack } from '../lib/api';
+import { getAlbums, getAlbum, getTrack, getAlbumImage } from '../lib/api';
+import Song from './Song';
 // import { useNavigate } from 'react-router-dom';
 
 const Albums = () => {
   const { birthyear } = useParams();
-  // const [track, setTrack] = useState(null);
+  const [albumImage, setAlbumImage] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,7 +42,17 @@ const Albums = () => {
                 //   .catch((err) => console.error(err));
               })
               .catch((err) => console.error(err));
+
+            getAlbumImage(randomAlbumId)
+              .then((res) => {
+                const randomAlbumImage = res.data.images[0].url;
+                setAlbumImage(randomAlbumImage);
+
+                console.log('ALBUM IMAGE', randomAlbumImage);
+              })
+              .catch((err) => console.error(err));
           } else {
+            // startDataFetching();
             startDataFetching((offset + 200) % 800);
           }
         })
@@ -49,6 +60,18 @@ const Albums = () => {
     };
     startDataFetching(0);
   }, []);
+
+  console.log(albumImage);
+
+  // return (
+  //   <img
+  //     src={albumImage}
+  //     alt="example"
+  //     loading="lazy"
+  //     width="255"
+  //     height="255"
+  //   />
+  // );
 
   // useEffect(() => {
   //   const randomSongId =

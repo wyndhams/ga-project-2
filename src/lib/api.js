@@ -19,11 +19,18 @@ export const getAlbums = (offset) => {
 
 export const getAlbum = (albumId) => {
   return axios.get(
-    `https://api.napster.com/v2.2/albums/${albumId}/tracks`,
+    `https://api.napster.com/v2.1/albums/${albumId}/tracks`,
+    API_KEY
+  );
+};
+
+export const getAlbumImage = (albumId) => {
+  return axios.get(
+    `https://api.napster.com/v2.1/albums/${albumId}/images`,
     API_KEY
   );
 };
 
 export const getTrack = (trackId) => {
-  return axios.get(`https://api.napster.com/v2.2/tracks/${trackId}`, API_KEY);
+  return axios.get(`https://api.napster.com/v2.1/tracks/${trackId}`, API_KEY);
 };
