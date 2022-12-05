@@ -35,7 +35,7 @@ function Home() {
         <div className="container">
           <div className="columns">
             <div className="column is-half">
-              <h1 className="title">Pick a year</h1>
+              <h1 className="title">Pick a Year</h1>
               <div className="is-inline-flex">
                 <DatePicker
                   selected={startDate}
@@ -45,18 +45,47 @@ function Home() {
                   minDate={subtractYears(date, 12)}
                   maxDate={new Date()}
                 />
-                <button onClick={handleSelect}>Get My Random Song</button>
+                <button
+                  className="button is-fullwidth is-primary"
+                  onClick={handleSelect}
+                >
+                  Get My Random Song
+                </button>
               </div>
             </div>
             <div className="column is-half">
               <div className="columns">
                 <div className="column">
-                  <p>This is random artist preview 1</p>
-                  <p>This is random artist preview 2</p>
+                  <img
+                    src="https://atribecalledquest.com/wp-content/uploads/2014/08/mm.jpg"
+                    alt="Tribe Called Quest"
+                    loading="lazy"
+                    width="350"
+                    height="350"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/thumb/5/59/BaduizmErykah.jpg/220px-BaduizmErykah.jpg"
+                    alt="Erykah Badu"
+                    loading="lazy"
+                    width="350"
+                    height="350"
+                  />
                 </div>
                 <div className="column">
-                  <p>This is random artist preview 3</p>
-                  <p>This is random artist preview 4</p>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/a/a7/Random_Access_Memories.jpg"
+                    alt="Daft Punk"
+                    loading="lazy"
+                    width="350"
+                    height="350"
+                  />
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/en/a/a0/Blonde_-_Frank_Ocean.jpeg"
+                    alt="Frank Ocean"
+                    loading="lazy"
+                    width="350"
+                    height="350"
+                  />
                 </div>
               </div>
             </div>
