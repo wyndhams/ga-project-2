@@ -61,11 +61,15 @@ function Song() {
     return <p>Loading</p>;
   }
 
+  const reloadPage = () => {
+    window.location.reload();
+  };
+
   return (
     <>
       {/* Q? Not sure why below isn't centered on page, I thought className "container" makes it centered */}
       <div className="container">
-        <div className="column is-half-desktop is-one-half-tablet">
+        <div className="container column is-half-desktop is-one-half-tablet">
           <div className="card">
             <div className="card-header">
               <h4 className="card-header-title">{track.tracks[0].name}</h4>
@@ -92,6 +96,12 @@ function Song() {
                 <strong>Released:</strong> {track.tracks[0].albumName}
               </h4>
               <audio controls src={track.tracks[0].previewURL}></audio>
+              <button
+                className="button is-fullwidth is-medium is-primary"
+                onClick={reloadPage}
+              >
+                Give me another one
+              </button>
             </div>
           </div>
         </div>
