@@ -1,5 +1,40 @@
 @import '~bulma/bulma.sass'; // ! comment out this line if you DO NOT want to use Bulma
 
+* {
+  font-weight: 700;
+  font-family: "Orbitron", sans-serif;
+}
+
+body, footer {
+  background-color: black;
+  font-weight: 700;
+  font-family: "Orbitron", sans-serif;
+}
+
+footer {
+  font-size: 12px;
+  padding: 12px;
+}
+
 .container {
   color: blue;
+}
+
+h1.title {
+  color: white;
+}
+
+.hero {
+  color: white;
+  padding-left: 36px;
+}
+
+input {
+  padding: 10px;
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+audio {
+  margin: 15px 0;
 }
