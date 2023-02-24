@@ -2,7 +2,7 @@
 
 # Project Overview
 
-This was the second project of the General Assembly Software Engineering Immersive course and my first time pair programming which I enjoyed a lot! The project's brief was to create a React app consuming an external API.  We decided to create an application that utilised the Napster API to display a random song with song information and an audio snippet based on a user’s selected year of choice.
+This was the second project of the General Assembly Software Engineering Immersive course and my first time pair programming which I enjoyed a lot! The project's brief was to create a React app consuming an external API.  I worked in a team of 2 with [Linh Vu](https://github.com/linh-vup) decided to create an application that utilised the Napster API to display a random song with song information and an audio snippet based on a user’s selected year of choice.
 
 Please find the full deployment of the app [here](https://wyndhams-ga-project-2.netlify.app/). 
 
@@ -113,9 +113,14 @@ There was also added complexity in the Napster API design, which required us to 
 - The song endpoint did contain a released year but did not contain other information e.g. album artwork that we required for display on our website. 
 - The v2.0 endpoint only returned 200 results.
 
-# Key Learnings
+# Highlights & Key Learnings
 
 This process taught me to thoroughly read API documentation and returned data structures prior to commencing with a project idea. Another key learning was the importance of effective communication and collaboration when working on a group project. Pair-programming and using tools like Slack and Zoom helped us to stay on track and work together to solve problems.
+
+- Thoroughly reading API documentation and understanding data structures is essential to the success of a project.
+- Effective communication and collaboration are critical when working on group projects. Using tools like Slack and Zoom can help you stay on track and solve problems together.
+- Pair-programming is an excellent way to work through difficult coding challenges and learn from others.
+- Working with external APIs can be challenging, but it can also be a valuable learning experience.
 
 Overall, this project was a valuable learning experience that gave us the opportunity to work with external APIs and to practice our coding and collaboration skills. While there were challenges along the way, we were able to adapt and come up with creative solutions to meet our project goals. Moving forward, we will be better equipped to approach similar projects and tackle challenges more effectively.
 
@@ -129,6 +134,3 @@ Given the limited timeframe and the difficulties we had with figuring out nestin
 - Add a save functionality and either save it in localstorage or create a mini-backend
 - Find a way to decrease loading time
 - Update the styling and make the home page more responsive
-
-
-
